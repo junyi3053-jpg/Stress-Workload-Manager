@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Plus, Trash2, Clock, Check, Sparkles } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2, Clock, Check, Sparkles, GripVertical } from 'lucide-react';
+import { Reorder } from 'motion/react';
 import { SubTask, LifeCategory, CATEGORY_CONFIG, Task } from '../types';
 import { EnergyEngine } from '../services/EnergyEngine';
 
@@ -201,109 +202,116 @@ export const BreakdownConfirmScreen: React.FC<BreakdownConfirmScreenProps> = ({
             <span className="text-[11px] text-[#93A09B]">Editable below</span>
           </div>
 
-          {steps.map((step, index) => {
-            const config = CATEGORY_CONFIG[step.category];
-            return (
-              <div
-                key={step.id}
-                className="p-3 rounded-xl bg-white border border-[#E2E7E2] shadow-2xs space-y-2.5 transition-all hover:border-[#2F6F63]/30"
-              >
-                {/* Top row: Title input & Delete */}
-                <div className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded-full bg-[#F0F3EF] text-[#5C6B67] text-[11px] font-medium flex items-center justify-center shrink-0 mt-1">
-                    {index + 1}
-                  </span>
-                  <input
-                    type="text"
-                    value={step.title}
-                    onChange={(e) => handleUpdateStepTitle(step.id, e.target.value)}
-                    className="flex-1 text-sm text-[#1E2A28] font-medium focus:outline-hidden focus:ring-1 focus:ring-[#2F6F63] rounded px-1.5 py-0.5 border border-transparent hover:border-[#E2E7E2]"
-                  />
-                  <button
-                    onClick={() => handleDeleteStep(step.id)}
-                    disabled={steps.length <= 1}
-                    className="p-1.5 text-[#93A09B] hover:text-[#C1483B] hover:bg-[#C1483B]/10 rounded-lg transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#93A09B]"
-                    title="Delete step"
-                    aria-label="Delete step"
-                  >
-                    <Trash2 size={15} />
-                  </button>
-                </div>
+          <Reorder.Group axis="y" values={steps} onReorder={setSteps} className="space-y-2.5">
+            {steps.map((step, index) => {
+              const config = CATEGORY_CONFIG[step.category];
+              return (
+                <Reorder.Item
+                  key={step.id}
+                  value={step}
+                  className="p-3 rounded-xl bg-white border border-[#E2E7E2] shadow-2xs space-y-2.5 transition-all hover:border-[#2F6F63]/30 cursor-grab active:cursor-grabbing"
+                >
+                  {/* Top row: Title input & Delete */}
+                  <div className="flex items-start gap-2">
+                    <div className="flex flex-col items-center justify-center pt-1 pr-1 opacity-50 hover:opacity-100 transition-opacity">
+                      <GripVertical size={16} className="text-[#93A09B]" />
+                    </div>
+                    <span className="w-5 h-5 rounded-full bg-[#F0F3EF] text-[#5C6B67] text-[11px] font-medium flex items-center justify-center shrink-0 mt-1">
+                      {index + 1}
+                    </span>
+                    <input
+                      type="text"
+                      value={step.title}
+                      onChange={(e) => handleUpdateStepTitle(step.id, e.target.value)}
+                      className="flex-1 text-sm text-[#1E2A28] font-medium focus:outline-hidden focus:ring-1 focus:ring-[#2F6F63] rounded px-1.5 py-0.5 border border-transparent hover:border-[#E2E7E2]"
+                    />
+                    <button
+                      onClick={() => handleDeleteStep(step.id)}
+                      disabled={steps.length <= 1}
+                      className="p-1.5 text-[#93A09B] hover:text-[#C1483B] hover:bg-[#C1483B]/10 rounded-lg transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#93A09B]"
+                      title="Delete step"
+                      aria-label="Delete step"
+                    >
+                      <Trash2 size={15} />
+                    </button>
+                  </div>
 
-                {/* Bottom row: Category dropdown, Minutes, Date Picker, Colored Category Pill + Cortisol Delta */}
-                <div className="flex flex-col gap-2 pt-1 border-t border-[#F0F3EF]">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      {/* Category dropdown */}
-                      <select
-                        value={step.category}
-                        onChange={(e) =>
-                          handleUpdateCategory(step.id, e.target.value as LifeCategory)
-                        }
-                        className="text-[11px] font-medium px-2 py-1 rounded-lg border border-[#E2E7E2] bg-[#F0F3EF] text-[#1E2A28] focus:outline-hidden focus:ring-1 focus:ring-[#2F6F63]"
+                  {/* Bottom row: Category dropdown, Minutes, Date Picker, Colored Category Pill + Cortisol Delta */}
+                  <div className="flex flex-col gap-2 pt-1 border-t border-[#F0F3EF]">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex flex-wrap items-center gap-1.5">
+                        {/* Category dropdown */}
+                        <select
+                          value={step.category}
+                          onChange={(e) =>
+                            handleUpdateCategory(step.id, e.target.value as LifeCategory)
+                          }
+                          className="text-[11px] font-medium px-2 py-1 rounded-lg border border-[#E2E7E2] bg-[#F0F3EF] text-[#1E2A28] focus:outline-hidden focus:ring-1 focus:ring-[#2F6F63]"
+                        >
+                          <option value="Mental">Mental</option>
+                          <option value="Physical">Physical</option>
+                          <option value="Social">Social</option>
+                          <option value="Errands">Errands</option>
+                        </select>
+
+                        {/* Minutes input */}
+                        <div className="flex items-center gap-1 text-[11px] text-[#5C6B67] bg-[#F0F3EF] px-2 py-1 rounded-lg border border-[#E2E7E2]">
+                          <Clock size={12} className="text-[#93A09B]" />
+                          <input
+                            type="number"
+                            min={5}
+                            max={240}
+                            step={5}
+                            value={step.estimatedMinutes}
+                            onChange={(e) =>
+                              handleUpdateMinutes(step.id, parseInt(e.target.value) || 5)
+                            }
+                            className="w-8 text-center bg-transparent text-[#1E2A28] font-medium focus:outline-hidden"
+                          />
+                          <span>m</span>
+                        </div>
+                        
+                        {/* Date input */}
+                        <div className="flex items-center text-[11px] bg-[#F0F3EF] px-1 py-1 rounded-lg border border-[#E2E7E2]">
+                          <input
+                            type="date"
+                            min={new Date().toISOString().split('T')[0]}
+                            value={step.date || ''}
+                            onChange={(e) => handleUpdateStepDate(step.id, e.target.value)}
+                            className="bg-transparent focus:outline-hidden text-[#1E2A28] font-medium w-full max-w-[105px] disabled:opacity-50"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Colored Category Pill + Cortisol Delta number */}
+                      <div
+                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold"
+                        style={{
+                          backgroundColor: config.bgFaint,
+                          color: config.color,
+                          border: `1px solid ${config.borderFaint}`,
+                        }}
                       >
-                        <option value="Mental">Mental</option>
-                        <option value="Physical">Physical</option>
-                        <option value="Social">Social</option>
-                        <option value="Errands">Errands</option>
-                      </select>
-
-                      {/* Minutes input */}
-                      <div className="flex items-center gap-1 text-[11px] text-[#5C6B67] bg-[#F0F3EF] px-2 py-1 rounded-lg border border-[#E2E7E2]">
-                        <Clock size={12} className="text-[#93A09B]" />
+                        <span>{step.category}</span>
+                        <span>·</span>
                         <input
                           type="number"
-                          min={5}
-                          max={240}
-                          step={5}
-                          value={step.estimatedMinutes}
+                          min={1}
+                          max={50}
+                          value={step.cortisolDelta}
                           onChange={(e) =>
-                            handleUpdateMinutes(step.id, parseInt(e.target.value) || 5)
+                            handleUpdateDelta(step.id, parseInt(e.target.value) || 1)
                           }
-                          className="w-8 text-center bg-transparent text-[#1E2A28] font-medium focus:outline-hidden"
+                          className="w-6 text-center bg-transparent font-bold focus:outline-hidden"
                         />
-                        <span>m</span>
+                        <span>pts</span>
                       </div>
-                      
-                      {/* Date input */}
-                      <div className="flex items-center text-[11px] bg-[#F0F3EF] px-1 py-1 rounded-lg border border-[#E2E7E2]">
-                        <input
-                          type="date"
-                          value={step.date || ''}
-                          onChange={(e) => handleUpdateStepDate(step.id, e.target.value)}
-                          className="bg-transparent focus:outline-hidden text-[#1E2A28] font-medium w-full max-w-[105px]"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Colored Category Pill + Cortisol Delta number */}
-                    <div
-                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold"
-                      style={{
-                        backgroundColor: config.bgFaint,
-                        color: config.color,
-                        border: `1px solid ${config.borderFaint}`,
-                      }}
-                    >
-                      <span>{step.category}</span>
-                      <span>·</span>
-                      <input
-                        type="number"
-                        min={1}
-                        max={50}
-                        value={step.cortisolDelta}
-                        onChange={(e) =>
-                          handleUpdateDelta(step.id, parseInt(e.target.value) || 1)
-                        }
-                        className="w-6 text-center bg-transparent font-bold focus:outline-hidden"
-                      />
-                      <span>pts</span>
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                </Reorder.Item>
+              );
+            })}
+          </Reorder.Group>
 
           {/* "+ Add step" dashed button */}
           <button

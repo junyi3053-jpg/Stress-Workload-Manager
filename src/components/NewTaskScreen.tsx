@@ -272,6 +272,7 @@ export const NewTaskScreen: React.FC<NewTaskScreenProps> = ({
               <input
                 id={dueDateId}
                 type="date"
+                min={new Date().toISOString().split('T')[0]}
                 disabled={isRepeated}
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}

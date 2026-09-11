@@ -100,6 +100,12 @@ export function generateBreakdownSteps(
     category = 'Mental';
     steps = [
       {
+        title: 'Organize study space, gather textbooks, and print out reference materials',
+        category: 'Errands',
+        minutes: 10,
+        delta: 4,
+      },
+      {
         title: `Consolidate key concepts and formula cheat-sheet for ${name.slice(0, 30)}`,
         category: 'Mental',
         minutes: 30,
@@ -112,10 +118,10 @@ export function generateBreakdownSteps(
         delta: 12 + importance,
       },
       {
-        title: 'Review incorrect answers and clarify ambiguous lecture points',
-        category: 'Mental',
-        minutes: 20,
-        delta: 8 + importance,
+        title: 'Take a brief stretching and hydration walk to reset cognitive fatigue',
+        category: 'Physical',
+        minutes: 10,
+        delta: 5,
       },
     ];
   } else if (/paper|essay|thesis|write|writing|draft|report/.test(combined)) {
@@ -134,8 +140,14 @@ export function generateBreakdownSteps(
         delta: 16 + importance,
       },
       {
+        title: 'Discuss paper topic briefly with a peer to validate logic and arguments',
+        category: 'Social',
+        minutes: 15,
+        delta: 6,
+      },
+      {
         title: 'Polish citations, bibliography, and run voice read-aloud check',
-        category: 'Mental',
+        category: 'Errands',
         minutes: 20,
         delta: 6 + importance,
       },
@@ -195,9 +207,15 @@ export function generateBreakdownSteps(
       },
       {
         title: `Complete execution of ${name.slice(0, 35)}`,
-        category: 'Errands',
+        category: 'Physical',
         minutes: 30,
         delta: 12 + importance,
+      },
+      {
+        title: 'Review schedule and take a mindful breath after finishing chores',
+        category: 'Mental',
+        minutes: 5,
+        delta: 2,
       },
       {
         title: 'Put away supplies, tidy space, and check off confirmation',

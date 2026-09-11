@@ -141,35 +141,38 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
             </div>
           ) : (
             /* Task Rows */
-            sortedTasks.map((task) => {
+            sortedTasks.map((task, taskIndex) => {
               const dominantCfg = CATEGORY_CONFIG[task.dominantCategory];
               const urgency = EnergyEngine.evaluateUrgency(task.dueDate);
               const completedSteps = task.subtasks.filter((s) => s.completed).length;
+              const isUpcomingMainTask = taskIndex > 0;
 
               return (
                 <div
                   key={task.id}
                   id={`task-card-${task.id}`}
                   onClick={() => onSelectTask(task)}
-                  className="relative group bg-white rounded-xl border border-[#E2E7E2] p-3.5 pl-4 cursor-pointer transition-all hover:border-[#2F6F63]/40 shadow-2xs hover:shadow-xs overflow-hidden"
+                  className={`relative group bg-white rounded-xl border border-[#E2E7E2] p-3.5 pl-4 cursor-pointer transition-all hover:border-[#2F6F63]/40 shadow-2xs hover:shadow-xs overflow-hidden ${isUpcomingMainTask ? 'opacity-60 bg-gray-50/50' : ''}`}
                 >
                   {/* Colored left accent bar matching dominant category */}
                   <div
-                    className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-xl"
+                    className={`absolute left-0 top-0 bottom-0 w-1.5 rounded-l-xl ${isUpcomingMainTask ? 'opacity-50' : ''}`}
                     style={{ backgroundColor: dominantCfg.color }}
                   />
 
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
                       {/* Task Name */}
-                      <h3 className="text-sm font-medium text-[#1E2A28] leading-tight group-hover:text-[#2F6F63] transition-colors truncate">
+                      <h3 className={`text-sm font-medium leading-tight group-hover:text-[#2F6F63] transition-colors truncate ${isUpcomingMainTask ? 'text-[#5C6B67]' : 'text-[#1E2A28]'}`}>
                         {task.name}
                       </h3>
 
-                      {/* Ongoing Task */}
+                      {/* Ongoing / Upcoming Task Label */}
                       {task.subtasks.length > 0 && (
                         <p className="text-[11px] text-[#5C6B67] mt-1.5 truncate">
-                          <span className="font-semibold text-[#2F6F63]">Ongoing Task:</span>{' '}
+                          <span className={`font-semibold ${isUpcomingMainTask ? 'text-[#93A09B]' : 'text-[#2F6F63]'}`}>
+                            {isUpcomingMainTask ? 'Upcoming Task:' : 'Ongoing Task:'}
+                          </span>{' '}
                           {task.subtasks.find(s => !s.completed)?.title || task.subtasks[0].title}
                         </p>
                       )}
@@ -235,8 +238,8 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                                 onClick={(e) => e.stopPropagation()} // prevent opening task details
                               >
                                 <div className="flex items-start justify-between mb-1">
-                                  <span className={`text-[10px] font-bold uppercase tracking-wider ${step.completed ? 'text-[#93A09B]' : idx === task.subtasks.findIndex(s => !s.completed) ? 'text-[#2F6F63]' : 'text-[#5C6B67]'}`}>
-                                    {step.completed ? 'Completed Task' : idx === task.subtasks.findIndex(s => !s.completed) ? 'Ongoing Task' : 'Upcoming Task'}
+                                  <span className={`text-[10px] font-bold uppercase tracking-wider ${step.completed ? 'text-[#93A09B]' : (idx === task.subtasks.findIndex(s => !s.completed) && !isUpcomingMainTask) ? 'text-[#2F6F63]' : 'text-[#5C6B67]'}`}>
+                                    {step.completed ? 'Completed Task' : (idx === task.subtasks.findIndex(s => !s.completed) && !isUpcomingMainTask) ? 'Ongoing Task' : 'Upcoming Task'}
                                   </span>
                                   {step.date && (
                                     <span className="text-[10px] text-[#5C6B67] bg-white px-1.5 py-0.5 rounded-md border border-[#E2E7E2]">
