@@ -1,0 +1,8 @@
+{
+  "name": "Stress & Workload Manager",
+  "description": "A calm, student-focused stress and energy workload manager tracking Mental, Physical, Social, and Errands loads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
