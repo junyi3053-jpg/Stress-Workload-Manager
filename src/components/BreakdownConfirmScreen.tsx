@@ -55,6 +55,12 @@ export const BreakdownConfirmScreen: React.FC<BreakdownConfirmScreenProps> = ({
     );
   };
 
+  const handleUpdateStepDate = (id: string, newDate: string) => {
+    setSteps((prev) =>
+      prev.map((s) => (s.id === id ? { ...s, date: newDate } : s))
+    );
+  };
+
   const handleDeleteStep = (id: string) => {
     if (steps.length <= 1) return; // Keep at least one step
     setSteps((prev) => prev.filter((s) => s.id !== id));
@@ -224,63 +230,75 @@ export const BreakdownConfirmScreen: React.FC<BreakdownConfirmScreenProps> = ({
                   </button>
                 </div>
 
-                {/* Bottom row: Category dropdown, Minutes, Colored Category Pill + Cortisol Delta */}
-                <div className="flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-[#F0F3EF]">
-                  {/* Category dropdown */}
-                  <div className="flex items-center gap-1.5">
-                    <select
-                      value={step.category}
-                      onChange={(e) =>
-                        handleUpdateCategory(step.id, e.target.value as LifeCategory)
-                      }
-                      className="text-xs font-medium px-2 py-1 rounded-lg border border-[#E2E7E2] bg-[#F0F3EF] text-[#1E2A28] focus:outline-hidden focus:ring-1 focus:ring-[#2F6F63]"
-                    >
-                      <option value="Mental">Mental</option>
-                      <option value="Physical">Physical</option>
-                      <option value="Social">Social</option>
-                      <option value="Errands">Errands</option>
-                    </select>
+                {/* Bottom row: Category dropdown, Minutes, Date Picker, Colored Category Pill + Cortisol Delta */}
+                <div className="flex flex-col gap-2 pt-1 border-t border-[#F0F3EF]">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      {/* Category dropdown */}
+                      <select
+                        value={step.category}
+                        onChange={(e) =>
+                          handleUpdateCategory(step.id, e.target.value as LifeCategory)
+                        }
+                        className="text-[11px] font-medium px-2 py-1 rounded-lg border border-[#E2E7E2] bg-[#F0F3EF] text-[#1E2A28] focus:outline-hidden focus:ring-1 focus:ring-[#2F6F63]"
+                      >
+                        <option value="Mental">Mental</option>
+                        <option value="Physical">Physical</option>
+                        <option value="Social">Social</option>
+                        <option value="Errands">Errands</option>
+                      </select>
 
-                    {/* Minutes input */}
-                    <div className="flex items-center gap-1 text-xs text-[#5C6B67] bg-[#F0F3EF] px-2 py-1 rounded-lg border border-[#E2E7E2]">
-                      <Clock size={12} className="text-[#93A09B]" />
+                      {/* Minutes input */}
+                      <div className="flex items-center gap-1 text-[11px] text-[#5C6B67] bg-[#F0F3EF] px-2 py-1 rounded-lg border border-[#E2E7E2]">
+                        <Clock size={12} className="text-[#93A09B]" />
+                        <input
+                          type="number"
+                          min={5}
+                          max={240}
+                          step={5}
+                          value={step.estimatedMinutes}
+                          onChange={(e) =>
+                            handleUpdateMinutes(step.id, parseInt(e.target.value) || 5)
+                          }
+                          className="w-8 text-center bg-transparent text-[#1E2A28] font-medium focus:outline-hidden"
+                        />
+                        <span>m</span>
+                      </div>
+                      
+                      {/* Date input */}
+                      <div className="flex items-center text-[11px] bg-[#F0F3EF] px-1 py-1 rounded-lg border border-[#E2E7E2]">
+                        <input
+                          type="date"
+                          value={step.date || ''}
+                          onChange={(e) => handleUpdateStepDate(step.id, e.target.value)}
+                          className="bg-transparent focus:outline-hidden text-[#1E2A28] font-medium w-full max-w-[105px]"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Colored Category Pill + Cortisol Delta number */}
+                    <div
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold"
+                      style={{
+                        backgroundColor: config.bgFaint,
+                        color: config.color,
+                        border: `1px solid ${config.borderFaint}`,
+                      }}
+                    >
+                      <span>{step.category}</span>
+                      <span>·</span>
                       <input
                         type="number"
-                        min={5}
-                        max={240}
-                        step={5}
-                        value={step.estimatedMinutes}
+                        min={1}
+                        max={50}
+                        value={step.cortisolDelta}
                         onChange={(e) =>
-                          handleUpdateMinutes(step.id, parseInt(e.target.value) || 5)
+                          handleUpdateDelta(step.id, parseInt(e.target.value) || 1)
                         }
-                        className="w-8 text-center bg-transparent text-[#1E2A28] font-medium focus:outline-hidden"
+                        className="w-6 text-center bg-transparent font-bold focus:outline-hidden"
                       />
-                      <span>m</span>
+                      <span>pts</span>
                     </div>
-                  </div>
-
-                  {/* Colored Category Pill + Cortisol Delta number */}
-                  <div
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold"
-                    style={{
-                      backgroundColor: config.bgFaint,
-                      color: config.color,
-                      border: `1px solid ${config.borderFaint}`,
-                    }}
-                  >
-                    <span>{step.category}</span>
-                    <span>·</span>
-                    <input
-                      type="number"
-                      min={1}
-                      max={50}
-                      value={step.cortisolDelta}
-                      onChange={(e) =>
-                        handleUpdateDelta(step.id, parseInt(e.target.value) || 1)
-                      }
-                      className="w-7 text-center bg-transparent font-bold focus:outline-hidden"
-                    />
-                    <span>pts</span>
                   </div>
                 </div>
               </div>

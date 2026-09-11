@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, Plus, Clock, Sparkles, CheckCircle2, ChevronDown, ChevronUp, Circle } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Task, LifeCategory, CATEGORY_CONFIG } from '../types';
 import { RingMeter } from './RingMeter';
 import { EnergyEngine } from '../services/EnergyEngine';
@@ -44,29 +45,29 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
   const sortedTasks = EnergyEngine.sortTasksByUrgency(tasks);
 
   return (
-    <div className="min-h-full flex flex-col justify-between bg-[#F0F3EF] relative pb-20">
-      <div>
-        {/* Top Header with Hamburger icon and Student profile badge */}
-        <div className="sticky top-0 z-20 bg-[#F0F3EF]/95 backdrop-blur-md px-4 py-3 border-b border-[#E2E7E2] flex items-center justify-between">
-          <button
-            id="hamburger-menu-btn"
-            onClick={onOpenMenu}
-            className="p-2 -ml-1.5 rounded-xl text-[#1E2A28] hover:bg-white/70 transition-colors"
-            aria-label="Open side drawer"
-          >
-            <Menu size={22} />
-          </button>
+    <div className="h-full flex flex-col bg-[#F0F3EF] relative overflow-hidden">
+      {/* Top Header with Hamburger icon and Student profile badge */}
+      <div className="shrink-0 z-20 bg-[#F0F3EF]/95 backdrop-blur-md px-4 py-3 border-b border-[#E2E7E2] flex items-center justify-between">
+        <button
+          id="hamburger-menu-btn"
+          onClick={onOpenMenu}
+          className="p-2 -ml-1.5 rounded-xl text-[#1E2A28] hover:bg-white/70 transition-colors"
+          aria-label="Open side drawer"
+        >
+          <Menu size={22} />
+        </button>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-medium text-[#5C6B67] hidden sm:inline">
-              Term 1 · Week 4
-            </span>
-            <div className="w-8 h-8 rounded-full bg-[#2F6F63]/15 border border-[#2F6F63]/25 text-[#2F6F63] flex items-center justify-center font-newsreader italic text-sm font-semibold">
-              A
-            </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-medium text-[#5C6B67] hidden sm:inline">
+            Term 1 · Week 4
+          </span>
+          <div className="w-8 h-8 rounded-full bg-[#2F6F63]/15 border border-[#2F6F63]/25 text-[#2F6F63] flex items-center justify-center font-newsreader italic text-sm font-semibold">
+            A
           </div>
         </div>
+      </div>
 
+      <div className="flex-1 overflow-y-auto pb-28">
         {/* Greeting & Date Section */}
         <div className="px-5 pt-4 pb-2">
           <span className="text-xs font-medium text-[#5C6B67] uppercase tracking-wider block mb-0.5">
@@ -165,6 +166,14 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                         {task.name}
                       </h3>
 
+                      {/* Ongoing Task */}
+                      {task.subtasks.length > 0 && (
+                        <p className="text-[11px] text-[#5C6B67] mt-1.5 truncate">
+                          <span className="font-semibold text-[#2F6F63]">Ongoing Task:</span>{' '}
+                          {task.subtasks.find(s => !s.completed)?.title || task.subtasks[0].title}
+                        </p>
+                      )}
+
                       {/* Step count + total minutes */}
                       <div className="flex items-center gap-2 mt-1.5 text-xs text-[#5C6B67]">
                         <span className="flex items-center gap-1">
@@ -197,73 +206,87 @@ export const DashboardScreen: React.FC<DashboardScreenProps> = ({
                           onClick={(e) => toggleExpand(task.id, e)}
                           className="p-1 rounded-md hover:bg-[#F0F3EF] text-[#5C6B67] transition-colors"
                         >
-                          {expandedTasks[task.id] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                          <motion.div
+                            animate={{ rotate: expandedTasks[task.id] ? 180 : 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <ChevronDown size={16} />
+                          </motion.div>
                         </button>
                       )}
                     </div>
                   </div>
 
                   {/* Expanded Action Steps Details */}
-                  {expandedTasks[task.id] && (
-                    <div className="mt-4 pt-3 border-t border-[#E2E7E2] flex flex-col gap-3">
-                      {task.subtasks.map((step) => {
-                        return (
-                          <div
-                            key={step.id}
-                            className="flex flex-col bg-[#F0F3EF]/50 rounded-lg p-2.5 gap-2"
-                            onClick={(e) => e.stopPropagation()} // prevent opening task details
-                          >
-                            <div className="flex items-start gap-2">
-                              <button
-                                onClick={() => onToggleSubtask(task.id, step.id)}
-                                className="mt-0.5 shrink-0 transition-colors"
+                  <AnimatePresence>
+                    {expandedTasks[task.id] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-4 pt-3 border-t border-[#E2E7E2] flex flex-col gap-3">
+                          {task.subtasks.map((step, idx) => {
+                            return (
+                              <div
+                                key={step.id}
+                                className="flex flex-col bg-[#F0F3EF]/50 rounded-lg p-2.5 gap-2"
+                                onClick={(e) => e.stopPropagation()} // prevent opening task details
                               >
-                                {step.completed ? (
-                                  <CheckCircle2 size={16} className="text-[#2F6F63]" />
-                                ) : (
-                                  <Circle size={16} className="text-[#93A09B]" />
-                                )}
-                              </button>
-                              <div className="flex-1 min-w-0">
-                                <p className={`text-xs font-medium leading-snug truncate ${step.completed ? 'line-through text-[#93A09B]' : 'text-[#1E2A28]'}`}>
-                                  {step.title}
-                                </p>
-                                <span className="text-[10px] text-[#5C6B67] flex items-center gap-1 mt-0.5">
-                                  <Clock size={10} /> {step.estimatedMinutes} mins
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* Slide bars / Segmented Bar for Energy Impact */}
-                            <div className="pl-6 text-[10px] space-y-1.5 mt-1">
-                              {(['Mental', 'Physical', 'Social', 'Errands'] as LifeCategory[]).map(cat => {
-                                const val = step.category === cat ? step.cortisolDelta : 0;
-                                const catCfg = CATEGORY_CONFIG[cat];
-                                const maxVal = 20; // assumed max delta for visual scaling
-                                const activeSegments = Math.min(10, Math.ceil((val / maxVal) * 10));
-                                
-                                return (
-                                  <div key={cat} className="flex items-center gap-2">
-                                    <span className="w-[45px] text-[#5C6B67] font-medium text-[9px] uppercase tracking-wider">[{cat}]</span>
-                                    <span className="w-5 font-semibold text-[#1E2A28] text-right text-[10px]">+{val}</span>
-                                    <div className="flex gap-[3px] ml-1">
-                                      {Array.from({ length: 10 }).map((_, i) => (
-                                        <div
-                                          key={i}
-                                          className={`w-2.5 h-3 rounded-[2px] ${i < activeSegments ? 'opacity-100' : 'opacity-20'}`}
-                                          style={{ backgroundColor: i < activeSegments ? catCfg.color : '#93A09B' }}
-                                        />
-                                      ))}
-                                    </div>
+                                <div className="flex items-start justify-between mb-1">
+                                  <span className={`text-[10px] font-bold uppercase tracking-wider ${step.completed ? 'text-[#93A09B]' : idx === task.subtasks.findIndex(s => !s.completed) ? 'text-[#2F6F63]' : 'text-[#5C6B67]'}`}>
+                                    {step.completed ? 'Completed Task' : idx === task.subtasks.findIndex(s => !s.completed) ? 'Ongoing Task' : 'Upcoming Task'}
+                                  </span>
+                                  {step.date && (
+                                    <span className="text-[10px] text-[#5C6B67] bg-white px-1.5 py-0.5 rounded-md border border-[#E2E7E2]">
+                                      {step.date}
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="flex items-start gap-2">
+                                  <button
+                                    onClick={() => onToggleSubtask(task.id, step.id)}
+                                    className="mt-0.5 shrink-0 transition-colors"
+                                  >
+                                    {step.completed ? (
+                                      <CheckCircle2 size={16} className="text-[#2F6F63]" />
+                                    ) : (
+                                      <Circle size={16} className="text-[#93A09B]" />
+                                    )}
+                                  </button>
+                                  <div className="flex-1 min-w-0">
+                                    <p className={`text-xs font-medium leading-snug truncate ${step.completed ? 'line-through text-[#93A09B]' : 'text-[#1E2A28]'}`}>
+                                      {step.title}
+                                    </p>
+                                    <span className="text-[10px] text-[#5C6B67] flex items-center gap-1 mt-0.5">
+                                      <Clock size={10} /> {step.estimatedMinutes} mins
+                                    </span>
                                   </div>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+                                </div>
+
+                                {/* Energy Impact Square */}
+                                <div className="pl-6 mt-1 flex items-center gap-2">
+                                  <div
+                                    className="flex items-center justify-center min-w-[24px] h-6 px-1 rounded-[6px] font-bold text-[11px] text-white shadow-sm"
+                                    style={{ backgroundColor: CATEGORY_CONFIG[step.category].color }}
+                                  >
+                                    {step.cortisolDelta > 0 ? `+${step.cortisolDelta}` : step.cortisolDelta}
+                                  </div>
+                                  <span
+                                    className="text-[10px] font-semibold uppercase tracking-wider"
+                                    style={{ color: CATEGORY_CONFIG[step.category].color }}
+                                  >
+                                    {step.category}
+                                  </span>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })

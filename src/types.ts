@@ -24,6 +24,7 @@ export interface SubTask {
   estimatedMinutes: number;
   cortisolDelta: number; // e.g. 12 means +12 impact points
   completed: boolean;
+  date?: string; // Optional user-assigned date (YYYY-MM-DD)
 }
 
 export interface Task {
@@ -32,6 +33,7 @@ export interface Task {
   description: string;
   importance: number; // 1 to 5 scale
   dueDate: string; // ISO string 'YYYY-MM-DD'
+  isRepeated?: boolean; // When true, due date is not strictly enforced
   dominantCategory: LifeCategory;
   totalMinutes: number;
   subtasks: SubTask[];

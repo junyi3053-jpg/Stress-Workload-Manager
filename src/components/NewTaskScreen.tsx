@@ -30,6 +30,7 @@ export const NewTaskScreen: React.FC<NewTaskScreenProps> = ({
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [importance, setImportance] = useState<number>(3);
+  const [isRepeated, setIsRepeated] = useState<boolean>(false);
   const [dueDate, setDueDate] = useState<string>(() => {
     // Default tomorrow or today
     const tomorrow = new Date(Date.now() + 86400000);
@@ -82,6 +83,7 @@ export const NewTaskScreen: React.FC<NewTaskScreenProps> = ({
         aiNote,
         generatedSteps: steps,
         dominantCategory,
+        isRepeated,
       });
     }, 850);
   };
@@ -213,49 +215,69 @@ export const NewTaskScreen: React.FC<NewTaskScreenProps> = ({
             </div>
           </div>
 
-          {/* Due Date Picker */}
+          {/* Repeated Task Toggle & Due Date Picker */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label
-                htmlFor={dueDateId}
-                className="text-xs font-medium text-[#5C6B67] uppercase tracking-wider"
-              >
-                Due Date
-              </label>
-              <div className="flex items-center gap-1 text-xs text-[#5C6B67]">
-                <CalendarIcon size={13} className="text-[#2F6F63]" />
-                <span>Selected: {dueDate}</span>
+            <div className="flex items-center justify-between mb-3 bg-white p-3 rounded-xl border border-[#E2E7E2] shadow-2xs">
+              <div>
+                <label className="text-sm font-medium text-[#1E2A28]">Repeated Task</label>
+                <p className="text-[11px] text-[#5C6B67]">Disable strict due dates for routine tasks</p>
               </div>
+              <button
+                type="button"
+                onClick={() => setIsRepeated(!isRepeated)}
+                className={`w-11 h-6 rounded-full p-1 transition-colors relative ${isRepeated ? 'bg-[#2F6F63]' : 'bg-[#E2E7E2]'}`}
+              >
+                <div
+                  className={`w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${isRepeated ? 'translate-x-5' : 'translate-x-0'}`}
+                />
+              </button>
             </div>
 
-            {/* Quick chips */}
-            <div className="grid grid-cols-4 gap-1.5 mb-2">
-              {quickDates.map((d) => {
-                const isSelected = dueDate === d.value;
-                return (
-                  <button
-                    key={d.label}
-                    type="button"
-                    onClick={() => setDueDate(d.value)}
-                    className={`py-1.5 text-xs rounded-lg border transition-all text-center ${
-                      isSelected
-                        ? 'bg-[#2F6F63] text-white border-[#2F6F63]'
-                        : 'bg-white text-[#5C6B67] border-[#E2E7E2] hover:bg-[#F0F3EF]'
-                    }`}
-                  >
-                    {d.label}
-                  </button>
-                );
-              })}
-            </div>
+            <div className={`transition-opacity ${isRepeated ? 'opacity-40 pointer-events-none' : 'opacity-100'}`}>
+              <div className="flex items-center justify-between mb-1.5">
+                <label
+                  htmlFor={dueDateId}
+                  className="text-xs font-medium text-[#5C6B67] uppercase tracking-wider"
+                >
+                  Due Date
+                </label>
+                <div className="flex items-center gap-1 text-xs text-[#5C6B67]">
+                  <CalendarIcon size={13} className="text-[#2F6F63]" />
+                  <span>Selected: {dueDate}</span>
+                </div>
+              </div>
 
-            <input
-              id={dueDateId}
-              type="date"
-              value={dueDate}
-              onChange={(e) => setDueDate(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#E2E7E2] text-sm text-[#1E2A28] focus:outline-hidden focus:ring-2 focus:ring-[#2F6F63]/30 focus:border-[#2F6F63] shadow-2xs"
-            />
+              {/* Quick chips */}
+              <div className="grid grid-cols-4 gap-1.5 mb-2">
+                {quickDates.map((d) => {
+                  const isSelected = dueDate === d.value;
+                  return (
+                    <button
+                      key={d.label}
+                      type="button"
+                      disabled={isRepeated}
+                      onClick={() => setDueDate(d.value)}
+                      className={`py-1.5 text-xs rounded-lg border transition-all text-center ${
+                        isSelected
+                          ? 'bg-[#2F6F63] text-white border-[#2F6F63]'
+                          : 'bg-white text-[#5C6B67] border-[#E2E7E2] hover:bg-[#F0F3EF]'
+                      }`}
+                    >
+                      {d.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <input
+                id={dueDateId}
+                type="date"
+                disabled={isRepeated}
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+                className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#E2E7E2] text-sm text-[#1E2A28] focus:outline-hidden focus:ring-2 focus:ring-[#2F6F63]/30 focus:border-[#2F6F63] shadow-2xs disabled:bg-gray-50"
+              />
+            </div>
           </div>
 
           {/* AI Predicted Impact Card */}
