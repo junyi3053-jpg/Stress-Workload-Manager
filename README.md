@@ -54,18 +54,18 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 | **U-Tube Water/Oil Visualizer Widget** (Dropped) | While visually novel, complex custom UI animations introduce performance overhead and battery drain without offering additional valuable insight beyond the standard 5-dimension workload meter visualizers. |
 
 ### 2.2 Ideation Boards
-**Detailed Ideation Board:** [Link]
+**Detailed Ideation Board:** [[Link](https://www.figma.com/board/QidxqFD5LRiBmcFs83Ra8x/Stress---Workload-Manager?node-id=0-1&t=oYhmZGSDEGB32Lji-1)]
 
-![Problem Tree](problem_tree.png)
+<img width="3078" height="1088" alt="5 whys" src="https://github.com/user-attachments/assets/0ef71625-a9b7-44ab-a744-04c3ad860234" />
 *Figure 2.1: 5 Whys Problem Tree breaking down the root causes of student burnout and mapping direct AI-driven recovery suggestions.*
 
-![System Mindmap](system_mindmap.png)
+<img width="2982" height="1588" alt="Planning" src="https://github.com/user-attachments/assets/33d99841-d691-49b2-b0ce-7ae6bcf4c4ca" />
 *Figure 2.2: System Mindmap outlining the Detection, Prevention, and Mitigation logic along with WearOS and API integration points.*
 
-![Experience Analysis](experience_analysis.png)
+<img width="1522" height="943" alt="Experience Analysis" src="https://github.com/user-attachments/assets/d88c75d9-13e6-471d-b620-e7032d8f2c6b" />
 *Figure 2.3: Experience Analysis board capturing team pain points regarding rest anxiety, task automation, and peer-assistance concepts.*
 
-![Feature Evaluation](feature_evaluation.png)
+<img width="2982" height="1588" alt="Planning" src="https://github.com/user-attachments/assets/25529016-03e3-45ce-9680-7e8ac7bce8ce" />
 *Figure 2.4: Feature evaluation board detailing benefits, drawbacks, and reasons for accepting or rejecting candidate ideas.*
 
 ### 2.3 Mentor Consultation
@@ -78,7 +78,7 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 
 ## 3. Design & Prototype
 
-* **UI Prototype:** [Public Link]
+* **UI Prototype:** [[Public Link](https://www.figma.com/board/QidxqFD5LRiBmcFs83Ra8x/Stress---Workload-Manager?node-id=0-1&t=oYhmZGSDEGB32Lji-1)]
 
 *(Note: See the UI Prototype link above for key screens and interactions showcasing the application's flow.)*
 
