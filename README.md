@@ -68,6 +68,20 @@ To visualize our logic for detection, prevention, and mitigation of student burn
 
 ![System Mindmap](mindmap.png)
 *Figure: System Mindmap outlining the Detection, Prevention, and Mitigation logic along with WearOS and API integration points.*
+1. Planning
+   <img width="2982" height="1588" alt="Planning" src="https://github.com/user-attachments/assets/d8955288-353b-4435-9f2e-791731178aa6" />
+2. Sub-Planning
+   <img width="3326" height="3128" alt="Sub-Planning" src="https://github.com/user-attachments/assets/2f0caeb7-be38-4528-b9c2-2dedc3dfcddc" />
+
+3. Experience Analysis
+   <img width="1522" height="943" alt="Experience Analysis" src="https://github.com/user-attachments/assets/ece02768-d633-4e6c-a013-6c254bb77ac5" />
+
+5. System Design : Storage
+   <img width="3069" height="899" alt="System Design Storage" src="https://github.com/user-attachments/assets/f3808984-f583-4739-84a2-5ce0fa3bd00f" />
+
+6. System Design : User Flow Diagram
+  <img width="3496" height="3175" alt="System Design User Flow Diagram" src="https://github.com/user-attachments/assets/0b9fc510-af94-46a3-b506-140d8cd9333c" />
+
 
 ## 💻 Tech Stack & Architecture
 
