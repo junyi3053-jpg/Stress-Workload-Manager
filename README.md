@@ -4,7 +4,7 @@
 
 **Problem Statement:** Build an app that gives students a clear picture of their load across different areas (mental, time, physical, social, errands) and actually helps them do something about it before burnout hits. It shouldn't just track and report. Instead, it should help students rebalance what they're carrying and push them toward recovery, like rest or getting out of the house. Make sure it's usable, accessible, and something students would actually keep open on their phone.
 
-**Video Presentation:** [Unlisted Youtube Link] 
+**Video Presentation:** [Unlisted Youtube Link](https://youtu.be/UIjYUsUOaG8)
 
 **Presentation Slides:** [Public Link](https://canva.link/kckp3ll9lqwh358)
 
