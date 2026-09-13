@@ -1,14 +1,12 @@
-# Stress & Workload Manager
+# **Stress & Workload Manager By AlAddict**
 
-**By Team AlAddict**
-**Members:** Yee Jia hao, Mooi Yang Jing, Mok Yuan Cong, Teoh Jun Yi
+**Team:** Yee Jia Hao, Mooi Yang Jing, Mok Yuan Cong, Teoh Jun Yi
 
-**Reference Document:** Please refer to the supplementary file **CodeNection.pdf** for additional project details.
+**Problem Statement:** Stress & Workload Manager
 
-**Links:**
-* **Video Presentation:** [Unlisted Youtube Link]
-* **Presentation Slides:** [Public Link]
-* **UI Prototype:** [Public Link]
+**Video Presentation:** [Unlisted Youtube Link] 
+
+**Presentation Slides:** [Public Link] 
 
 ---
 
@@ -41,23 +39,24 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 
 ### 2.1 Ideas We Considered
 
-| Idea | Why it was dropped / kept |
+| **Idea** | **Why it was dropped / kept** |
 | :--- | :--- |
 | **5-Dimension Workload & Cortisol Meters** (Chosen) | Serves as an effective visual framework for tracking real-time student load capacity across Mental, Physical, Social, and Errand against Time (Daily), providing an intuitive baseline for personal stress awareness and preventing burnout early. |
-| **AI-Based Task Breakdown** (Chosen) | Helps students in task planning by leveraging multimodal AI to decompose complex tasks and assignments into a structured Directed Acyclic Graph (DAG) of actionable micro-tasks. |
-| **Daily Task Rescheduling & Survey, One-Tap Algorithmic Rebalancing & Proactive Nudges** (Chosen) | Executes an automated morning calibration by ingesting wearable telemetry (sleep quality/duration, HRV, resting HR via Google Health Connect) and a quick mood survey to auto-build an optimized daily schedule with Recovery Tasks. Delivers primary low-friction recovery task intervention. Uses PERT Slack Time Analysis to reschedule non-critical tasks in under a minute and delivers proactive nudges (breathing, hydration) before burnout hits critical levels. |
-| **Notes Task Reflection** (Dropped, with consideration) | Adding manual journaling/reflection steps creates unnecessary user friction and cognitive load for already overstressed students, conflicting with the app's zero-friction philosophy. |
-| **Parent & Teacher Evaluation Dashboard** (Dropped, with consideration) | Introducing external monitoring by parents and/or tutors increases student anxiety being monitored and undermines autonomy, counteracting the stress-reduction objective. Therefore, execution of this idea requires more reviews. |
-| **"I'm Stuck" Peer Escalation Feature** (Dropped) | A feature enabling students to progress tasks with peer/lecturer help during rest/recovery sessions. Removed from the main implementation scope to streamline system architecture and focus fully on automated, single-user AI schedule management. Utility relies heavily on a critical mass of active users, so it is deferred to future development phases. |
-| **Small Student Discussion Forums / Threads** (Dropped) | Out of scope. Community moderation and forum infrastructure add non-essential complexity and infrastructure cost without directly contributing to individual workload rebalancing. Can instead collaborate with forums like Chegg, Reddit, Quora, etc. |
-| **Fun Tarot Reading Sessions** (Dropped) | Lacks scientific grounding and conflicts with the application's core algorithmic, health-backed approach to biometric and task management. Only used as entertainment for stress reduction. |
+| **AI based Task Breakdown** (Chosen) | Help students in task planning by leveraging multimodal AI to decompose complex tasks and assignments into a structured Directed Acyclic Graph (DAG) of actionable micro-tasks. |
+| **Daily Task Rescheduling & Survey** (Chosen) | Executes an automated morning calibration by ingesting wearable telemetry (sleep quality/duration, HRV, resting HR via Google Health Connect) and a quick mood survey to auto-build an optimized daily schedule with Recovery Tasks. |
+| **Algorithmic One-Tap Rebalancing & Proactive Nudges** (Chosen) | Delivers primary low-friction recovery task intervention. Uses PERT Slack Time Analysis to reschedule non-critical tasks in under a minute and delivers proactive nudges (breathing, hydration) before burnout hits critical levels. |
+| **Task Reflection Notes** (Dropped, with consideration) | A reflection step after completing daily task to evaluate and help with future work breakdown planning to better fit student habits and ability.<br><br>Adding manual journaling creates unnecessary user friction and cognitive load for already overstressed students, conflicting with the app's zero-friction philosophy. |
+| **Parent & Teacher Evaluation Dashboard** (Dropped, with consideration) | A feature that allows parents and/or tutors to monitor student’s workload to take proactive steps to prevent burnouts.<br><br>Introducing external monitoring by parents or tutors increases student anxiety being monitored and undermines autonomy, counteracting the stress-reduction objective. Therefore, execution of this idea requires more reviews. |
+| **"I'm Stuck" Peer Escalation Feature** (Dropped, with consideration) | A feature enables students to progress tasks with peer/lecturer help during rest/recovery sessions.<br><br>Removed from the main implementation scope to streamline system architecture and focus fully on automated, single-user AI schedule management. Additionally, because its utility relies heavily on a critical mass of active users, it is planned for future development phases. |
+| **Small Student Discussion Forums / Threads** (Dropped) | Out of scope. Community moderation and forum infrastructure add non-essential complexity and infrastructure cost without directly contributing to individual workload rebalancing.<br><br>Can instead collaborate with forums like Chegg, Reddit, Quora, etc. |
+| **Fun Tarot Reading Sessions** (Dropped) | Lacks scientific grounding and conflicts with the application's core algorithmic, health-backed approach to biometric and task management.<br><br>Only suitable used as entertainment for stress reduction. |
 | **U-Tube Water/Oil Visualizer Widget** (Dropped) | While visually novel, complex custom UI animations introduce performance overhead and battery drain without offering additional valuable insight beyond the standard 5-dimension workload meter visualizers. |
 
 ### 2.2 Ideation Boards
 **Detailed Ideation Board:** [[Link](https://www.figma.com/board/QidxqFD5LRiBmcFs83Ra8x/Stress---Workload-Manager?node-id=0-1&t=oYhmZGSDEGB32Lji-1)]
 
 <img width="3078" height="1088" alt="5 whys" src="https://github.com/user-attachments/assets/0ef71625-a9b7-44ab-a744-04c3ad860234" />
-*Figure 2.1: 5 Whys Problem Tree breaking down the root causes of student burnout and mapping direct AI-driven recovery suggestions.*
+*Figure 2.1: 5 WHYs Problem Tree breaking down the root causes of student burnout and mapping recovery suggestions.*
 
 <img width="2982" height="1588" alt="Planning" src="https://github.com/user-attachments/assets/33d99841-d691-49b2-b0ce-7ae6bcf4c4ca" />
 *Figure 2.2: System Mindmap outlining the Detection, Prevention, and Mitigation logic along with WearOS and API integration points.*
@@ -72,7 +71,7 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 
 | Date | Mentor | Feedback Received | What Was Changed |
 | :--- | :--- | :--- | :--- |
-| September 10, 2026 | Ms. Iris Yan Ning | - Through the ideation process, many ideas have now been generated. Focus on the three most innovative and impactful features that can best capture the judges' attention.<br>- The work breakdown structure is a distinctive feature of the project. It shows how tasks and micro-tasks are organized, making the implementation plan easy to understand.<br>- The user flow diagram is clean, well-structured, and easy to follow project idea.<br>- Consider creating a character or mascot to represent the app, similar to Duolingo owl. This could build the app's identity and enhance user engagement and interaction.<br>- Overall, the project has identified the problem statement, and the proposed solution demonstrates a strong effort to address the identified needs effectively. | - Planned and confirmed on the 3 main features and future prospect.<br>- Created 6 mascots: Time, Mental, Physical, Social, Errand, and Stress.<br>- Planned improved presentations in terms of charisma and professionalism. |
+| 10 September 2026 | Ms Iris Yan Ning | - Through the ideation process, many ideas have been generated. For now, focus on the three most innovative and impactful features that can best capture the judges' attention.<br><br>- The work breakdown structure is a distinctive feature of the project. It shows how tasks and micro-tasks are organized, making the implementation plan easy to understand.<br><br>- The user flow diagram is clean, well-structured, and easy to follow project idea.<br><br>- Consider creating a character or mascot to represent the app, simillar to Duolingo owl. This could build the app's identity and enhance user engagement and interaction.<br><br>- Overall, the project has identified the problem statement, and the proposed solution demonstrates a strong effort to address the identified needs effectively. | - Planned and confirmed on the 3 main features and future prospect.<br><br>- Created 1 mascot to represent the app. (May change during build phase)<br><br>- Planned and improved presentations in terms of charisma and professionalism. |
 
 ---
 
@@ -98,33 +97,38 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 ### Tech Stack
 
 * **Frontend Framework: Flutter (Dart)**
-  * *Why:* Flutter supports cross-platform development efficiency for iOS, Android, and wearable integration with a single codebase. It allows high-performance rendering of graphic ideas such as visual meters and interactive schedules.
+  * *Why:* Flutter supports cross-platform development efficiency for iOS, Android, and wearable integration with a single codebase. It allows high-performance rendering of graphics ideas such as concepts of visual meters and interactive schedules.
 * **AI & Intelligence Engine: Gemini Multimodal API**
-  * *Why:* Gemini Multimodal API creates advantages in supporting robust analysis, as it enables natural language parsing and intelligent task decomposition into micro-tasks, automatically assigning priority and energy impact scores.
+  * *Why:* Gemini Multimodal API could create advantages in support robust analysis, as it enables natural language parsing and intelligent task decomposition into micro-tasks, automatically assigning priority and energy impact scores.
 * **Health Data Services: Google Health Connect API**
-  * *Why:* Google Health Connect API is widely recognized for its collaboration with the healthcare monitoring domain. It assists in integrating vital stress predictors like raw Heart Rate Variability (HRV) and sleep data with minimal user setup to connect directly to the developed system.
-* **Backend & Database: Firebase / BaaS (Firestore & Authentication)**
-  * *Why:* Firebase is an optimal option for supporting app features like real-time sync for calendar tasks, instant user preference updates, and zero-maintenance authentication.
+  * *Why:* Google Health Connect API is widely recognised for its collaboration with the healthcare monitoring domain, and it assists in integrating vital stress predictors like raw Heart Rate Variability (HRV) and sleep data with minimal user setup to connect directly to the developed system.
+* **Backend & Database: Firebase / BaaS (Firestore & Authentication) and SQLite**
+  * *Why:* Firebase is an optimal option for supporting app features like real-time sync for calendar tasks, instant user preference updates, and zero-maintenance authentication. Additionally, SQLite will be used as the local persistent database for the app to work offline after daily task breakdown.
 * **Hosting & Deployment: Firebase Hosting & Google Cloud Functions**
   * *Why:* Scalable and serverless triggers for running stress-level evaluations and schedule rebalancing routines without maintaining dedicated server infrastructure.
 
 ### Expected Technical Constraints
-1. **Wearable Sensor Standardization:** Diversity of hardware specs across smartwatches, while mean Heart Rate and sleep metrics might require normalization filters before being fed into stress calculation models.
-2. **API Rate & Latency Limits:** Calling LLMs for task breakdowns must be optimized using prompt caching or lightweight client-side task templates to keep schedule recalculations under 1 minute to prevent customer frustration.
+
+1. **Wearable Sensor Standardization:** Diversity of hardware specs across smartwatches, while mean Heart Rate and sleep metrics also might require normalization filters before fed into stress calculation models.
+2. **API Rate & Latency Limits:** Calling LLMs for task breakdowns must be optimized using prompt caching or lightweight client-side task templates to keep schedule recalculations under 1 minute to prevent customer frustrations.
 
 ### Build Plan & Scope
 
-**Phase 1 (Core Engine & UI):**
-* Implement the 5-area workload visualization dashboard (Cortisol Meters) in Flutter.
-* Build basic task input and calendar integration (Google Calendar).
+**Week 1 (Core Architecture & Baseline Dashboard):**
+* **System Design:** Finalize comprehensive use case descriptions, data schema (e.g., 1:N micro-task relations & M:N DAG prerequisites), and system architecture diagrams.
+* **Core Mobile Client Development:** Implement local database storage, task creation forms, and base calendar/to-do list integrations in Flutter.
+* **5-Dimension Workload UI:** Build the visual 5-Dimension Cortisol Workload Meter (Mental, Physical, Social, Errand against Time) to display real-time capacity on the primary Dashboard.
 
-**Phase 2 (AI Integration & Recovery Logic):**
-* Integrate Gemini API for automated micro-task breakdown.
-* Implement the "One-Tap Rebalance" algorithm for rapid timetable shifting.
+**Week 2 (AI Processing & Biometric Inputs):**
+* **Multimodal AI Integration (Gemini API):** Implement automated micro-task breakdown into Directed Acyclic Graphs (DAG), enabling parsing of text, calendar payload, and document/image (PDF assignment guidelines) for AI context.
+* **Google Health Connect API:** Integrate biometric telemetry (sleep quality/duration, HRV, resting HR) for optimized daily schedule initialization and baseline capacity scoring.
+* **Prompt Engineering & Token Optimization:** Structure Gemini API prompts for predictable JSON output and implement token-saving strategies for real-time task generation.
 
-**Phase 3 (Wearable & Health Signals):**
-* Connect Google Health Connect API for physical stress and sleep inputs.
-* Trigger proactive recovery notifications based on threshold metrics.
+**Week 3 (Other Features and UI/UX Improvement):**
+* Implement proactive burnout detection and recovery notifications based on threshold metrics.
+* Improve UI/UX against prototype design and refactor.
 
-**Out of Scope for Initial Build:**
-Real-time peer tutoring networks, native smartwatch standalone UI (relying on background sync), and complex Tarot/Widget visualizers.
+**Future Scope / Backlog:**
+* Task Reflection Notes
+* Parent & Teacher Evaluation Dashboard
+* "I'm Stuck" Peer Escalation feature
