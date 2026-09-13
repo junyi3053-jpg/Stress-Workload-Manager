@@ -95,7 +95,8 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 
 ## 3. Design & Prototype
 
-* **UI Prototype:** [[Public Link](https://www.figma.com/board/QidxqFD5LRiBmcFs83Ra8x/Stress---Workload-Manager?node-id=0-1&t=oYhmZGSDEGB32Lji-1)]
+
+* **UI Prototype:** [[Public Link](https://ai.studio/apps/a763bca5-d7f3-41e6-b63b-a4842d5eced4)]
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/0ab8678b-054b-4111-86f3-e16016e3df91" width="800" alt="Daily Check-in Screen" />
