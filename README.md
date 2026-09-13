@@ -55,17 +55,35 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 ### 2.2 Ideation Boards
 **Detailed Ideation Board:** [[Link](https://www.figma.com/board/QidxqFD5LRiBmcFs83Ra8x/Stress---Workload-Manager?node-id=0-1&t=oYhmZGSDEGB32Lji-1)]
 
-<img width="3078" height="1088" alt="5 whys" src="https://github.com/user-attachments/assets/0ef71625-a9b7-44ab-a744-04c3ad860234" />
-*Figure 2.1: 5 WHYs Problem Tree breaking down the root causes of student burnout and mapping recovery suggestions.*
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/0ef71625-a9b7-44ab-a744-04c3ad860234" width="100%" alt="5 WHYs Problem Tree" />
+  <p><em>Figure 2.1: 5 WHYs Problem Tree breaking down the root causes of student burnout and mapping recovery suggestions.</em></p>
+</div>
 
-<img width="2982" height="1588" alt="Planning" src="https://github.com/user-attachments/assets/33d99841-d691-49b2-b0ce-7ae6bcf4c4ca" />
-*Figure 2.2: System Mindmap outlining the Detection, Prevention, and Mitigation logic along with WearOS and API integration points.*
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/33d99841-d691-49b2-b0ce-7ae6bcf4c4ca" width="100%" alt="System Planning Mindmap" />
+  <p><em>Figure 2.2: System Mindmap outlining the core Detection, Prevention, and Mitigation logic along with WearOS and API integration points.</em></p>
+</div>
 
-<img width="1522" height="943" alt="Experience Analysis" src="https://github.com/user-attachments/assets/d88c75d9-13e6-471d-b620-e7032d8f2c6b" />
-*Figure 2.3: Experience Analysis board capturing team pain points regarding rest anxiety, task automation, and peer-assistance concepts.*
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d8c17351-b8b0-4cdf-be60-322d3d039e87" width="100%" alt="Sub-Planning Mindmap" />
+  <p><em>Figure 2.3: Sub-Planning Mindmap evaluating deferred and dropped project concepts, detailing their technical benefits, drawbacks, and rejection reasons</em></p>
+</div>
 
-<img width="2982" height="1588" alt="Planning" src="https://github.com/user-attachments/assets/25529016-03e3-45ce-9680-7e8ac7bce8ce" />
-*Figure 2.4: Feature evaluation board detailing benefits, drawbacks, and reasons for accepting or rejecting candidate ideas.*
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d88c75d9-13e6-471d-b620-e7032d8f2c6b" width="100%" alt="Experience Analysis" />
+  <p><em>Figure 2.4: Experience Analysis board capturing team pain points regarding rest anxiety, task automation, and peer-assistance concepts.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/66274d17-e98d-4113-bd4a-dc7773e2dd4f" width="100%" alt="System Data Storage Architecture" />
+  <p><em>Figure 2.5: Data Storage Architecture comparing Tree-Based models against Directed Acyclic Graphs (DAG) for flexible micro-task sequencing and PERT slack time analysis.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/97012d45-f838-40d1-835c-24c83662fa91" width="100%" alt="System User Flow Diagram" />
+  <p><em>Figure 2.6: System User Flow Diagram detailing end-to-end process logic, including biometric calibration, AI-driven task decomposition, and proactive burnout recovery loops.</em></p>
+</div>
 
 ### 2.3 Mentor Consultation
 
