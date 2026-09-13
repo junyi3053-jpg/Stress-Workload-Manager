@@ -79,7 +79,40 @@ Our solution is a smart mobile and smartwatch integration that visualizes a stud
 
 * **UI Prototype:** [[Public Link](https://www.figma.com/board/QidxqFD5LRiBmcFs83Ra8x/Stress---Workload-Manager?node-id=0-1&t=oYhmZGSDEGB32Lji-1)]
 
-*(Note: See the UI Prototype link above for key screens and interactions showcasing the application's flow.)*
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/0ab8678b-054b-4111-86f3-e16016e3df91" width="800" alt="Daily Check-in Screen" />
+  <p><em>Figure 3.1: A daily check-in screen that synchronizes user smartwatch data (skip, if not applicable) and conducts a quick readiness survey. This readiness score is used to dynamically adjust the student's daily workload and prevent burnout.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/c0f2c357-a88f-4330-9daf-05ca5a72371e" width="260" alt="Main Dashboard Interface" />
+  <p><em>Figure 3.2: The main dashboard interface featuring the 5-dimension workload meter, daily morning check-in evaluation, daily task listings, and a quick-action button to add new tasks for breakdown.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/5babca66-4362-4588-8f65-91a4aceb7077" width="260" alt="Create New Task Screen" />
+  <p><em>Figure 3.3: The Create New Task screen for entering the task title, description, importance rating, and due date. Users can also attach contextual files to optimize task breakdown generation.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/a88f0e5a-992c-40e3-8625-beb48733ac2b" width="260" alt="Task Breakdown View" />
+  <p><em>Figure 3.4: The task breakdown view displaying micro-tasks along with their calculated dimensional weights (Mental, Physical, Social, and Errands). Users can add, edit, delete, or reorder tasks to customize the execution sequence.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/733340db-f464-4f08-b644-a491839c857a" width="260" alt="Updated Dashboard Interface" />
+  <p><em>Figure 3.5: The updated dashboard interface showing newly added items, automatically prioritizing high-importance tasks due on the current day.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/5f7eee6e-5cd5-41a2-80c4-e1fde946cc16" width="800" alt="Proactive Burnout Detection Alert" />
+  <p><em>Figure 3.6: Proactive burnout detection alerts triggered at continuous intervals (e.g., 30, 60, or 90 minutes) during long tasks to prevent exhaustion. The system prompts students to complete a short recovery activity before continuing work on the same task.</em></p>
+</div>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/b869791f-8a9c-40ff-a1e4-422a16d9123a" width="260" alt="Task Duration Exceeded Alert" />
+  <p><em>Figure 3.7: An alert notification displayed when a task exceeds its allocated duration. It prompts the student to mark the task as complete, extend the time limit, or postpone it to another day.</em></p>
+</div>
 
 ---
 
